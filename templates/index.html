@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Fixed typo: 'viewpoint' to 'viewport' -->
+    <title>Morse Code Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Morse Code Converter</h1>
+
+    <!-- Main Form -->
+    <form method="POST">
+        <input
+            type="text"
+            name="input_text"
+            placeholder="Enter text or Morse code"
+            value="{{ user_input }}"
+            required
+        >
+        <br>
+        <button type="submit">Convert</button>
+    </form>
+
+    <!-- Display Result -->
+    {% if result %}
+        <p><strong>Result:</strong> {{ result }}</p>
+
+        <!-- Play Morse Code Sound -->
+        <form method="POST">
+            <input type="hidden" name="morse_code" value="{{ result }}"> <!-- Hidden input for Morse code -->
+            <button type="submit" name="play_sound">Play Morse Code Sound</button>
+        </form>
+    {% endif %}
+</body>
+</html>
